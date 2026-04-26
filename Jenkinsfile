@@ -13,16 +13,18 @@ pipeline {
             }
         }
 
-        stage('Run Test') {
+       stage('Run Test') {
     steps {
         sh '''
+        docker rm -f test_container || true
+
         docker run -d -p 5001:8000 --name test_container $IMAGE_NAME
 
-        echo "Waiting for app to be ready..."
+        echo "Waiting for app..."
 
         for i in $(seq 1 10); do
           curl -f http://localhost:5001 && break
-          echo "Not ready yet... retrying"
+          echo "Not ready yet..."
           sleep 2
         done
 
