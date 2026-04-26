@@ -6,13 +6,7 @@ pipeline {
     }
 
     stages {
-
-        stage('Clone') {
-            steps {
-                git 'https://github.com/CarrieWhite44/jenkins-first-try.git'
-            }
-        }
-
+        
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME .'
