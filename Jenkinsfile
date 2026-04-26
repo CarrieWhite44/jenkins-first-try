@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'https://your-repo-url.git'
+                git 'https://github.com/CarrieWhite44/jenkins-first-try.git'
             }
         }
 
