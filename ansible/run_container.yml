@@ -1,0 +1,15 @@
+- name: Deploy app
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Copy project files
+      copy:
+        src: /home/carrie/tiny-app/
+        dest: /home/carrie/app/
+
+    - name: Run docker compose
+      shell: docker compose up -d --build
+      args:
+        chdir: /home/carrie/app/

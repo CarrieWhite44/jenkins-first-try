@@ -1,0 +1,19 @@
+- name: Install and configure nginx
+  hosts: servers
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Copy nginx config
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/sites-enabled/default
+
+    - name: Restart nginx
+      systemd:
+        name: nginx
+        state: restarted
